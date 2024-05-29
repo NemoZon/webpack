@@ -3,6 +3,7 @@ const path = require('path');
 // and automatically injects all your generated bundles into this file.
 // https://webpack.js.org/concepts/#plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'); //to access built-in plugins
 
 // https://webpack.js.org/guides/getting-started/#basic-setup
 module.exports = (env) => ({
@@ -13,5 +14,8 @@ module.exports = (env) => ({
     path: path.resolve(__dirname, 'build'),
     clean: true,
   },
-  plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') })],
+  plugins: [
+    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') }),
+    new webpack.ProgressPlugin(),
+  ],
 });
